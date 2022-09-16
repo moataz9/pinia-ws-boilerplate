@@ -11,13 +11,13 @@ export const useCartStore = defineStore('CartStore', {
     addItem(itemId: Uid, count: number) {
       const item = this.items.find(item => item.id === itemId)
       if (item) {
-        item.count >= 0 ? (item.count += count) : item.count++
+        item.count >= 0 ? (item.count = count) : item.count++
       } else {
         this.items.push({ id: itemId, count })
       }
     },
     clearCart() {
-      this.items.splice(this.items.length)
+      this.items = this.items.slice(this.items.length)
     },
   },
   getters: {
