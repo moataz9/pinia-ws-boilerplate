@@ -1,14 +1,16 @@
 <script setup>
 defineProps({
   modelValue: { type: [Number, String], default: 0 },
-});
+})
 
-const emit = defineEmits(["update:modelValue", "input"]);
-const updateValue = (value) => emit("update:modelValue", value);
+const emit = defineEmits(['update:modelValue', 'input'])
+const updateValue = value => emit('update:modelValue', value)
 </script>
 <template>
   <span>
     <button
+      :disabled="modelValue <= 0"
+      :style="modelValue <= 0 ? 'opacity:0.5;cursor:default' : ''"
       class="cursor-pointer bg-gray-200 px-2 rounded-l"
       @click="updateValue(modelValue > 0 ? modelValue - 1 : null)"
     >
@@ -24,8 +26,8 @@ const updateValue = (value) => emit("update:modelValue", value);
   </span>
 </template>
 
-<style scoped>
-input[type="number"] {
+<style scoped lang="pcss">
+input[type='number'] {
   appearance: none;
   -moz-appearance: textfield;
   border: 1px solid gray;
